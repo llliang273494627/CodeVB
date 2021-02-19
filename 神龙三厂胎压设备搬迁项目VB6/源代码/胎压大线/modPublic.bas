@@ -26,16 +26,16 @@ pcPriClassBase As Long
 dwFlags As Long
 szExeFile As String * 260
 End Type
-Private Declare Function CreateToolhelp32Snapshot Lib "KERNEL32" (ByVal dwFlags As Long, ByVal th32ProcessID As Long) As Long
-Private Declare Function Process32First Lib "KERNEL32" (ByVal hSnapShot As Long, lppe As PROCESSENTRY32) As Long
-Private Declare Function Process32Next Lib "KERNEL32" (ByVal hSnapShot As Long, lppe As PROCESSENTRY32) As Long
-Private Declare Function OpenProcess Lib "KERNEL32" (ByVal dwDesiredAccess As Long, ByVal blnheritHandle As Long, ByVal dwAppProcessId As Long) As Long
-Private Declare Function TerminateProcess Lib "KERNEL32" (ByVal ApphProcess As Long, ByVal uExitCode As Long) As Long
-Private Declare Sub CloseHandle Lib "KERNEL32" (ByVal hPass As Long)
+Private Declare Function CreateToolhelp32Snapshot Lib "kernel32" (ByVal dwFlags As Long, ByVal th32ProcessID As Long) As Long
+Private Declare Function Process32First Lib "kernel32" (ByVal hSnapShot As Long, lppe As PROCESSENTRY32) As Long
+Private Declare Function Process32Next Lib "kernel32" (ByVal hSnapShot As Long, lppe As PROCESSENTRY32) As Long
+Private Declare Function OpenProcess Lib "kernel32" (ByVal dwDesiredAccess As Long, ByVal blnheritHandle As Long, ByVal dwAppProcessId As Long) As Long
+Private Declare Function TerminateProcess Lib "kernel32" (ByVal ApphProcess As Long, ByVal uExitCode As Long) As Long
+Private Declare Sub CloseHandle Lib "kernel32" (ByVal hPass As Long)
 Private Const TH32CS_SNAPPROCESS = &H2&
 
 
-Private Declare Function GetTickCount Lib "KERNEL32" () As Long
+Private Declare Function GetTickCount Lib "kernel32" () As Long
 Public ProgramTitle As String       '程序Title在所有需要显示的地方全部用该变量，例如msgbox函数的Title参数
 Public DBCnnStr As String           '数据库连接字符串全局需要连接数据库的地方全部调用该变量
 Public RDBCnnStr As String
@@ -43,13 +43,13 @@ Public RDBCnnStr As String
 Public MESCnnStr As String      'MES数据库的连接字符串
 Public MES_IP As String    'MES服务器IP地址
 
-Public oIOCard As IOControl.IOCard  'IO控制对象
+Public oIOCard As IOCard  'IO控制对象
 
 'VT520控制相关参数
-Public oLVT520 As VT520DLL.CVT520    'VT520控制对象
+Public oLVT520 As CVT520    'VT520控制对象
 Public LVT520_PortNum As Integer
 Public LVT520_Settings As String
-Public oRVT520 As VT520DLL.CVT520    'VT520控制对象
+Public oRVT520 As CVT520    'VT520控制对象
 Public RVT520_PortNum As Integer
 Public RVT520_Settings As String
 
@@ -159,7 +159,7 @@ On Error GoTo Main_Err
     LVT520_PortNum = getConfigValue("T_CtrlParam", "LVT520", "LVT520_PortNum")
     LVT520_Settings = getConfigValue("T_CtrlParam", "LVT520", "LVT520_Settings")
 
-    Set oLVT520 = New VT520DLL.CVT520
+    Set oLVT520 = New CVT520
     oLVT520.CommPort = LVT520_PortNum
     oLVT520.ComSettings = LVT520_Settings
     oLVT520.OpenPort = True
@@ -167,12 +167,12 @@ On Error GoTo Main_Err
     RVT520_PortNum = getConfigValue("T_CtrlParam", "RVT520", "RVT520_PortNum")
     RVT520_Settings = getConfigValue("T_CtrlParam", "RVT520", "RVT520_Settings")
 
-    Set oRVT520 = New VT520DLL.CVT520
+    Set oRVT520 = New CVT520
     oRVT520.CommPort = RVT520_PortNum
     oRVT520.ComSettings = RVT520_Settings
     oRVT520.OpenPort = True
 
-    Set oIOCard = New IOControl.IOCard
+    Set oIOCard = New IOCard
 
     '读取并初始化对象信号灯控制参数
     Lamp_GreenFlash_IOPort = getConfigValue("T_CtrlParam", "Lamp", "Lamp_GreenFlash_IOPort")
@@ -285,7 +285,7 @@ On Error GoTo exportExcel_ERR
     Set FSO = CreateObject("Scripting.FileSystemObject")
     
     NowOutputDir = App.Path & "\Export"
-    If Trim(Dir(NowOutputDir, vbDirectory)) = "" Then
+    If Trim(dir(NowOutputDir, vbDirectory)) = "" Then
         FSO.CreateFolder NowOutputDir
     End If
     
@@ -420,15 +420,15 @@ hasDSG_Err:
     hasDSG = False
 End Function
 'Add by ZCJ 2012-10-20 设置左右两边控制器的程序号
-Public Function SetProNum(ProNum As String)
+Public Function SetProNum(proNum As String)
 On Error GoTo SetProNum_Err
-    oRVT520.SendProNum CInt(ProNum)
-    oLVT520.SendProNum CInt(ProNum)
-    LogWritter "将控制器的程序号设置为" & ProNum
+    oRVT520.SendProNum CInt(proNum)
+    oLVT520.SendProNum CInt(proNum)
+    LogWritter "将控制器的程序号设置为" & proNum
     
     Exit Function
 SetProNum_Err:
-    LogWritter "在设置控制器程序号为" & ProNum & "时出错，错误信息：" & Err.Description
+    LogWritter "在设置控制器程序号为" & proNum & "时出错，错误信息：" & Err.Description
 End Function
 
 '******************************************************************************

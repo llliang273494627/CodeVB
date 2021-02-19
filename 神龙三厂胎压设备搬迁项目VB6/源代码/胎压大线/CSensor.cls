@@ -13,7 +13,7 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
 
-Private WithEvents IOC As IOControl.IOCard
+Private WithEvents IOC As IOCard
 Attribute IOC.VB_VarHelpID = -1
 Event onChange(state As Boolean)
 Public m_IOPort As Integer

@@ -1,0 +1,4 @@
+[2021-02-19 10:18:41]osensorCommand----False
+[2021-02-19 12:13:17]osensorCommand----False
+[2021-02-19 12:17:09]osensorCommand----False
+[2021-02-19 12:22:10]osensorCommand----False
