@@ -1,0 +1,2 @@
+[2012-5-2 8:34:56]osensorCommand----False
+[2012-5-2 8:35:19]osensorCommand----False

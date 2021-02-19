@@ -1,0 +1,66 @@
+package id1siiqfrrcvxj9frrcwv04;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:vbasic#Class#CVT520:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:vbasic#Class#CLamp:oiref><oihard>
+@__modelType reference 
+*/
+class reference1 {
+}/**
+@__ref <oiref:vbasic#Class#CSensor:oiref><oihard>
+@__modelType reference 
+*/
+class reference2 {
+}/**
+@__ref <oiref:vbasic#Class#CCar:oiref><oihard>
+@__modelType reference 
+*/
+class reference3 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:ExtProperty#<oiref:vbasic#Member#CVT520#CommPort#(##)#:oiref>=20,120,178,16,1:oigroup>
+<oigroup:<oiref:vbasic#Class#CLamp:oiref>=220,10,200,260,0:oigroup>
+<oigroup:<oiref:vbasic#Member#CVT520#m_OpenPort:oiref>=62,189,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CCar#m_TireRFID:oiref>=766,133,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CSensor#m_InputPort:oiref>=479,72,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CLamp#m_IOBuzzerPort:oiref>=338,142,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Class#CSensor:oiref>=440,10,200,260,0:oigroup>
+<oigroup:<oiref:vbasic#Member#CVT520#m_InPort:oiref>=82,177,0,0,1:oigroup>
+<oigroup:ExtProperty#<oiref:vbasic#Member#CVT520#ComSettings#(##)#:oiref>=20,130,178,16,1:oigroup>
+<oigroup:<oiref:vbasic#Class#CVT520:oiref>=-10,10,200,260,0:oigroup>
+<oigroup:<oiref:vbasic#Member#CLamp#m_IOGPort:oiref>=281,30,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CVT520#m_Result:oiref>=72,203,0,0,1:oigroup>
+<oigroup:ExtProperty#<oiref:vbasic#Member#CLamp#IOGPort#(##)#:oiref>=238,156,178,16,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CVT520#m_ComSettings:oiref>=134,186,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CLamp#m_IOBPort:oiref>=333,129,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CCar#m_TireRRID:oiref>=760,155,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CCar#m_TireLFID:oiref>=739,185,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CVT520#m_CommPort:oiref>=94,159,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CCar#m_VINCode:oiref>=730,142,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CLamp#m_IORPort:oiref>=297,184,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CLamp#m_IOFlashPort:oiref>=303,227,0,0,1:oigroup>
+<oigroup:ExtProperty#<oiref:vbasic#Member#CVT520#InPort#(##)#:oiref>=20,100,178,16,1:oigroup>
+<oigroup:<oiref:vbasic#Member#CLamp#m_IOYPort:oiref>=331,187,0,0,1:oigroup>
+<oigroup:<oiref:vbasic#Class#CCar:oiref>=670,10,217,255,0:oigroup>
+<oigroup:<oiref:vbasic#Member#CCar#m_TireLRID:oiref>=725,165,0,0,1:oigroup>
+*/
+class __positions {
+}

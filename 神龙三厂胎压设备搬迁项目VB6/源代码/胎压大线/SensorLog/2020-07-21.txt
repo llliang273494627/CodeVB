@@ -1,0 +1,11 @@
+[2020-07-21 09:00:07]osensorCommand----False
+[2020-07-21 09:00:57]osensorCommand----False
+[2020-07-21 09:00:57]osensorCommand----True
+[2020-07-21 09:04:38]osensorCommand----False
+[2020-07-21 09:04:38]osensorCommand----True
+[2020-07-21 10:10:21]osensorCommand----False
+[2020-07-21 10:10:21]osensorCommand----True
+[2020-07-21 14:21:21]osensorCommand----False
+[2020-07-21 14:21:21]osensorCommand----True
+[2020-07-21 14:22:44]osensorCommand----False
+[2020-07-21 14:22:44]osensorCommand----True

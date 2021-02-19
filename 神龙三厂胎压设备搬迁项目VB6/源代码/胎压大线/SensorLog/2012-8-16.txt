@@ -1,0 +1,12 @@
+[2012-8-16 8:46:08]osensorCommand----False
+[2012-8-16 8:49:35]osensorCommand----False
+[2012-8-16 8:50:25]osensorCommand----False
+[2012-8-16 8:50:28]osensorCommand----True
+[2012-8-16 8:51:22]osensorCommand----False
+[2012-8-16 8:51:27]osensorCommand----True
+[2012-8-16 8:56:19]osensorCommand----False
+[2012-8-16 8:56:23]osensorCommand----True
+[2012-8-16 8:59:12]osensorCommand----False
+[2012-8-16 8:59:48]osensorCommand----False
+[2012-8-16 9:00:40]osensorCommand----False
+[2012-8-16 9:29:40]osensorCommand----False

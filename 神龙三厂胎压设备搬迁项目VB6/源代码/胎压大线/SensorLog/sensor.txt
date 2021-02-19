@@ -1,0 +1,13 @@
+2 左轮
+1 右轮
+3 直车身
+0 斜车身
+
+
+True 被挡
+False 通
+
+
+
+osensorCommand （True 系统解锁 False系统锁定）
+sensorLine (True 传动链开 False传动链关） 

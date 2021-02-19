@@ -1,0 +1,1 @@
+[2012-12-8 21:17:22]osensorCommand----False
