@@ -808,7 +808,7 @@ Friend Class FrmMain
 	'** 版    本：1.0
 	'******************************************************************************
 	Private Sub FrmMain_Load(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles MyBase.Load
-		
+        modPublic.Main()
 		'Add by ZCJ 2012-07-09 初始化测试状态
 		isInTesting = False
 		osen0Time = ""
@@ -1681,7 +1681,7 @@ MSCommBT_OnComm_Err:
 			AddMessage("系统已被锁定，请解锁！", True)
 			LogWritter("系统已锁定！")
 			'UPGRADE_WARNING: 计时器属性 Timer_PrintError.Interval 的值不能为 0。 单击以获得更多信息:“ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="169ECF4A-1968-402D-B243-16603CC08604"”
-			Timer_PrintError.Interval = 0
+            Timer_PrintError.Stop()
 		End If
 	End Sub
 	'停线事件
@@ -2715,14 +2715,14 @@ Err_Renamed:
 	End Sub
 	'初始化窗体的内容
 	Private Sub initFrom(ByRef isInitVin As Boolean)
-		Me.picLF.Image = Me.ImageList.ListImages(6).Picture
-		frmInfo.picLF.Image = frmInfo.ImageList.ListImages(6).Picture
-		Me.picLR.Image = Me.ImageList.ListImages(6).Picture
-		frmInfo.picLR.Image = frmInfo.ImageList.ListImages(6).Picture
-		Me.picRF.Image = Me.ImageList.ListImages(6).Picture
-		frmInfo.picRF.Image = frmInfo.ImageList.ListImages(6).Picture
-		Me.picRR.Image = Me.ImageList.ListImages(6).Picture
-		frmInfo.picRR.Image = frmInfo.ImageList.ListImages(6).Picture
+        Me.picLF.Image = Me.ImageList.Images.Item(6)
+        frmInfo.picLF.Image = frmInfo.ImageList.Images.Item(6)
+        Me.picLR.Image = Me.ImageList.Images.Item(6)
+        frmInfo.picLR.Image = frmInfo.ImageList.Images.Item(6)
+        Me.picRF.Image = Me.ImageList.Images.Item(6)
+        frmInfo.picRF.Image = frmInfo.ImageList.Images.Item(6)
+        Me.picRR.Image = Me.ImageList.Images.Item(6)
+        frmInfo.picRR.Image = frmInfo.ImageList.Images.Item(6)
 		
 		Me.txtLR.Text = ""
 		Me.lbLRMdl.Text = ""

@@ -141,124 +141,123 @@ Module modPublic
 	'******************************************************************************
 	'UPGRADE_WARNING: 应用程序将在 Sub Main() 结束时终止。 单击以获得更多信息:“ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="E08DDC71-66BA-424F-A612-80AF11498FF8"”
 	Public Sub Main()
-		On Error GoTo Main_Err
-		
-		DBCnnStr = "Provider=MSDASQL.1;Persist Security Info=False;Data Source=DPCAWH1_DSG101" 'DSG101ODBC
-		RDBCnnStr = getConfigValue("T_RunParam", "DB", "RDBCnnStr")
-		TimeOutNum = CShort(getConfigValue("T_RunParam", "DB", "TimeOutNum"))
+        DSG.Common.Helper.HelperLog.LogWritter("adfasdf fffffffffffffff")
+        DBCnnStr = "Provider=MSDASQL.1;Persist Security Info=False;Data Source=DPCAWH1_DSG101" 'DSG101ODBC
+        RDBCnnStr = getConfigValue("T_RunParam", "DB", "RDBCnnStr")
+        TimeOutNum = CShort(getConfigValue("T_RunParam", "DB", "TimeOutNum"))
         'Dim X As System.Windows.Forms.Form
         'For	Each X In My.Application.OpenForms
         '	X.Close()
         'Next X
-		
-		'得到参数配置getConfigValue
-		'动态读取参数配置
-		
-		ProgramTitle = "DSG初始化系统"
-		
-		MESCnnStr = getConfigValue("T_RunParam", "DB", "MESCnnStr") 'MES系统Oracle数据库连接字符串
-		MES_IP = getConfigValue("T_RunParam", "MES", "MESIP") 'MES系统数据库所在服务器IP地址
-		
-		'初始化控制对象
-		
-		'初始化VT520参数
-		LVT520_PortNum = CShort(getConfigValue("T_CtrlParam", "LVT520", "LVT520_PortNum"))
-		LVT520_Settings = getConfigValue("T_CtrlParam", "LVT520", "LVT520_Settings")
-		
-		oLVT520 = New CVT520
-		oLVT520.CommPort = LVT520_PortNum
-		oLVT520.ComSettings = LVT520_Settings
-		oLVT520.OpenPort = True
-		
-		RVT520_PortNum = CShort(getConfigValue("T_CtrlParam", "RVT520", "RVT520_PortNum"))
-		RVT520_Settings = getConfigValue("T_CtrlParam", "RVT520", "RVT520_Settings")
-		
-		oRVT520 = New CVT520
-		oRVT520.CommPort = RVT520_PortNum
-		oRVT520.ComSettings = RVT520_Settings
-		oRVT520.OpenPort = True
-		
-		oIOCard = New IOCard
-		
-		'读取并初始化对象信号灯控制参数
-		Lamp_GreenFlash_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_GreenFlash_IOPort"))
-		Lamp_GreenLight_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_GreenLight_IOPort"))
-		Lamp_YellowLight_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_YellowLight_IOPort"))
-		Lamp_RedLight_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_RedLight_IOPort"))
-		Lamp_RedFlash_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_RedFlash_IOPort"))
-		Lamp_Buzzer_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_Buzzer_IOPort"))
-		Lamp_YellowFlash_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_YellowFlash_IOPort"))
-		
-		Line_IOPort = CShort(getConfigValue("T_CtrlParam", "Line", "Line_IOPort"))
-		rdOutput = CShort(getConfigValue("T_CtrlParam", "Lamp", "rdOutput"))
-		rdResetCommand = CShort(getConfigValue("T_CtrlParam", "Lamp", "rdResetCommand"))
-		sensorCommandPort = CShort(getConfigValue("T_CtrlParam", "Line", "sensorCommandPort"))
-		sensorLinePort = CShort(getConfigValue("T_CtrlParam", "Line", "sensorLinePort"))
-		'初始化光电开关
-		sensor0Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor0Port"))
-		sensor1Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor1Port"))
-		sensor2Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor2Port"))
-		sensor3Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor3Port"))
-		sensor4Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor4Port"))
-		sensor5Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor5Port"))
-		
-		'传感器参数设定
-		mdlValue = getConfigValue("T_RunParam", "StandardValue", "MdlValue")
-		preMinValue = getConfigValue("T_RunParam", "StandardValue", "PreMinValue")
-		preMaxValue = getConfigValue("T_RunParam", "StandardValue", "PreMaxValue")
-		tempMinValue = getConfigValue("T_RunParam", "StandardValue", "TempMinValue")
-		tempMaxValue = getConfigValue("T_RunParam", "StandardValue", "TempMaxValue")
-		acSpeedMinValue = getConfigValue("T_RunParam", "StandardValue", "AcSpeedMinValue")
-		acSpeedMaxValue = getConfigValue("T_RunParam", "StandardValue", "AcSpeedMaxValue")
-		mTOCStartIndex = getConfigValue("T_RunParam", "TPMSCode", "MTOCStartIndex")
-		tPMSCodeLen = getConfigValue("T_RunParam", "TPMSCode", "TPMSCodeLen")
-		
-		WirledCodeGun_PortNum = getConfigValue("T_CtrlParam", "BarCodeGun", "WirledCodeGun_PortNum")
-		WirledCodeGun_Settings = getConfigValue("T_CtrlParam", "BarCodeGun", "WirledCodeGun_Settings")
-		
-		WirlessCodeGun_PortNum = getConfigValue("T_CtrlParam", "BarCodeGun", "WirlessCodeGun_PortNum")
-		WirlessCodeGun_Settings = getConfigValue("T_CtrlParam", "BarCodeGun", "WirlessCodeGun_Settings")
-		
-		'不同类型的轮胎传感器所对应的控制器程序号
-		ProNum_OldSensor = CShort(getConfigValue("T_CtrlParam", "ProgramNum", "ProNum_OldSensor"))
-		ProNum_NewSensor = CShort(getConfigValue("T_CtrlParam", "ProgramNum", "ProNum_NewSensor"))
-		
-		lineCommandFlag = CBool(getConfigValue("T_CtrlParam", "sensor", "lineCommandFlag"))
-		
-		isCheckAllQueue = CBool(getConfigValue("T_RunParam", "Queue", "CheckAllQueue"))
-		isOnlyScanVINCode = CBool(getConfigValue("T_RunParam", "Queue", "OnlyScanVINCode"))
-		isOnlyPrintNGWriteResult = CBool(getConfigValue("T_RunParam", "Print", "OnlyPrintNGWriteResult"))
-		isOnlyPrintNGFlow = CBool(getConfigValue("T_RunParam", "Print", "OnlyPrintNGFlow"))
-		
-		sensor0 = New CSensor
-		sensor1 = New CSensor
-		sensor2 = New CSensor
-		sensor3 = New CSensor
-		sensor4 = New CSensor
-		sensor5 = New CSensor
-		rdResetCommandS = New CSensor
-		sensorCommand = New CSensor
-		sensorLine = New CSensor
-		
-		sensor0.IOPort = sensor0Port
-		sensor1.IOPort = sensor1Port
-		sensor2.IOPort = sensor2Port
-		sensor3.IOPort = sensor3Port
-		sensor4.IOPort = sensor4Port
-		sensor5.IOPort = sensor5Port
-		
-		rdResetCommandS.IOPort = rdResetCommand
-		sensorCommand.IOPort = sensorCommandPort
-		sensorLine.IOPort = sensorLinePort
-		
-		FrmMain.Show()
-		
-		Exit Sub
-Main_Err: 
-		
-		MsgBox("初始化参数失败，错误信息：" & Err.Description & "。请检查配置信息！")
-		
-	End Sub
+
+        '得到参数配置getConfigValue
+        '动态读取参数配置
+
+        ProgramTitle = "DSG初始化系统"
+
+        MESCnnStr = getConfigValue("T_RunParam", "DB", "MESCnnStr") 'MES系统Oracle数据库连接字符串
+        MES_IP = getConfigValue("T_RunParam", "MES", "MESIP") 'MES系统数据库所在服务器IP地址
+
+        '初始化控制对象
+
+        '初始化VT520参数
+        LVT520_PortNum = CShort(getConfigValue("T_CtrlParam", "LVT520", "LVT520_PortNum"))
+        LVT520_Settings = getConfigValue("T_CtrlParam", "LVT520", "LVT520_Settings")
+
+        oLVT520 = New CVT520
+        oLVT520.CommPort = LVT520_PortNum
+        oLVT520.ComSettings = LVT520_Settings
+        oLVT520.OpenPort = True
+
+        RVT520_PortNum = CShort(getConfigValue("T_CtrlParam", "RVT520", "RVT520_PortNum"))
+        RVT520_Settings = getConfigValue("T_CtrlParam", "RVT520", "RVT520_Settings")
+
+        oRVT520 = New CVT520
+        oRVT520.CommPort = RVT520_PortNum
+        oRVT520.ComSettings = RVT520_Settings
+        oRVT520.OpenPort = True
+
+        oIOCard = New IOCard
+
+        '读取并初始化对象信号灯控制参数
+        Lamp_GreenFlash_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_GreenFlash_IOPort"))
+        Lamp_GreenLight_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_GreenLight_IOPort"))
+        Lamp_YellowLight_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_YellowLight_IOPort"))
+        Lamp_RedLight_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_RedLight_IOPort"))
+        Lamp_RedFlash_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_RedFlash_IOPort"))
+        Lamp_Buzzer_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_Buzzer_IOPort"))
+        Lamp_YellowFlash_IOPort = CShort(getConfigValue("T_CtrlParam", "Lamp", "Lamp_YellowFlash_IOPort"))
+
+        Line_IOPort = CShort(getConfigValue("T_CtrlParam", "Line", "Line_IOPort"))
+        rdOutput = CShort(getConfigValue("T_CtrlParam", "Lamp", "rdOutput"))
+        rdResetCommand = CShort(getConfigValue("T_CtrlParam", "Lamp", "rdResetCommand"))
+        sensorCommandPort = CShort(getConfigValue("T_CtrlParam", "Line", "sensorCommandPort"))
+        sensorLinePort = CShort(getConfigValue("T_CtrlParam", "Line", "sensorLinePort"))
+        '初始化光电开关
+        sensor0Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor0Port"))
+        sensor1Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor1Port"))
+        sensor2Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor2Port"))
+        sensor3Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor3Port"))
+        sensor4Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor4Port"))
+        sensor5Port = CShort(getConfigValue("T_CtrlParam", "sensor", "sensor5Port"))
+
+        '传感器参数设定
+        mdlValue = getConfigValue("T_RunParam", "StandardValue", "MdlValue")
+        preMinValue = getConfigValue("T_RunParam", "StandardValue", "PreMinValue")
+        preMaxValue = getConfigValue("T_RunParam", "StandardValue", "PreMaxValue")
+        tempMinValue = getConfigValue("T_RunParam", "StandardValue", "TempMinValue")
+        tempMaxValue = getConfigValue("T_RunParam", "StandardValue", "TempMaxValue")
+        acSpeedMinValue = getConfigValue("T_RunParam", "StandardValue", "AcSpeedMinValue")
+        acSpeedMaxValue = getConfigValue("T_RunParam", "StandardValue", "AcSpeedMaxValue")
+        mTOCStartIndex = getConfigValue("T_RunParam", "TPMSCode", "MTOCStartIndex")
+        tPMSCodeLen = getConfigValue("T_RunParam", "TPMSCode", "TPMSCodeLen")
+
+        WirledCodeGun_PortNum = getConfigValue("T_CtrlParam", "BarCodeGun", "WirledCodeGun_PortNum")
+        WirledCodeGun_Settings = getConfigValue("T_CtrlParam", "BarCodeGun", "WirledCodeGun_Settings")
+
+        WirlessCodeGun_PortNum = getConfigValue("T_CtrlParam", "BarCodeGun", "WirlessCodeGun_PortNum")
+        WirlessCodeGun_Settings = getConfigValue("T_CtrlParam", "BarCodeGun", "WirlessCodeGun_Settings")
+
+        '不同类型的轮胎传感器所对应的控制器程序号
+        ProNum_OldSensor = CShort(getConfigValue("T_CtrlParam", "ProgramNum", "ProNum_OldSensor"))
+        ProNum_NewSensor = CShort(getConfigValue("T_CtrlParam", "ProgramNum", "ProNum_NewSensor"))
+
+        lineCommandFlag = CBool(getConfigValue("T_CtrlParam", "sensor", "lineCommandFlag"))
+
+        isCheckAllQueue = CBool(getConfigValue("T_RunParam", "Queue", "CheckAllQueue"))
+        isOnlyScanVINCode = CBool(getConfigValue("T_RunParam", "Queue", "OnlyScanVINCode"))
+        isOnlyPrintNGWriteResult = CBool(getConfigValue("T_RunParam", "Print", "OnlyPrintNGWriteResult"))
+        isOnlyPrintNGFlow = CBool(getConfigValue("T_RunParam", "Print", "OnlyPrintNGFlow"))
+
+        sensor0 = New CSensor
+        sensor1 = New CSensor
+        sensor2 = New CSensor
+        sensor3 = New CSensor
+        sensor4 = New CSensor
+        sensor5 = New CSensor
+        rdResetCommandS = New CSensor
+        sensorCommand = New CSensor
+        sensorLine = New CSensor
+
+        sensor0.IOPort = sensor0Port
+        sensor1.IOPort = sensor1Port
+        sensor2.IOPort = sensor2Port
+        sensor3.IOPort = sensor3Port
+        sensor4.IOPort = sensor4Port
+        sensor5.IOPort = sensor5Port
+
+        rdResetCommandS.IOPort = rdResetCommand
+        sensorCommand.IOPort = sensorCommandPort
+        sensorLine.IOPort = sensorLinePort
+
+        'FrmMain.Show()
+
+        Exit Sub
+Main_Err:
+
+        MsgBox("初始化参数失败，错误信息：" & Err.Description & "。请检查配置信息！")
+
+    End Sub
 	
 	
 	

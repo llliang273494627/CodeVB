@@ -90,8 +90,9 @@ Friend Class IOCard
 		Dim tempStr As String
 		
 		' Add type of PC Laboratory Card
-		'UPGRADE_WARNING: 未能解析对象 devicelist() 的默认属性。 单击以获得更多信息:“ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"”
-		tt = DRV_GetAddress(devicelist(0)) '扫描设备
+        'UPGRADE_WARNING: 未能解析对象 devicelist(0) 的默认属性。 单击以获得更多信息:“ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"”
+        '未能解析对象 devicelist(0) 的默认属性,设为0值
+        tt = DRV_GetAddress(0) '扫描设备
 		ErrCde = DRV_DeviceGetList(tt, MaxEntries, nOutEntries)
 		If (ErrCde <> 0) Then
 			DRV_GetErrorMessage(ErrCde, szErrMsg.Value)
