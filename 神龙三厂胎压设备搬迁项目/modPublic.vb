@@ -141,7 +141,6 @@ Module modPublic
 	'******************************************************************************
 	'UPGRADE_WARNING: 应用程序将在 Sub Main() 结束时终止。 单击以获得更多信息:“ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="E08DDC71-66BA-424F-A612-80AF11498FF8"”
 	Public Sub Main()
-        DSG.Common.Helper.HelperLog.LogWritter("adfasdf fffffffffffffff")
         DBCnnStr = "Provider=MSDASQL.1;Persist Security Info=False;Data Source=DPCAWH1_DSG101" 'DSG101ODBC
         RDBCnnStr = getConfigValue("T_RunParam", "DB", "RDBCnnStr")
         TimeOutNum = CShort(getConfigValue("T_RunParam", "DB", "TimeOutNum"))
